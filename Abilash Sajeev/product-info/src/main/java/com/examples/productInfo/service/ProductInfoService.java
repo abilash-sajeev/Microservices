@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.examples.productInfo.exceptions.ProductAlreadyExistsException;
 import com.examples.productInfo.exceptions.ProductNotFoundException;

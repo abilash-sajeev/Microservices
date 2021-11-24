@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.examples.store.exceptions.ProductNotFoundException;
 import com.examples.store.models.ProductData;
 import com.examples.store.service.StoreInfoService;
 
@@ -26,11 +25,7 @@ public class StoreInfoController {
 	
 	@RequestMapping(value =  "/GetProducts/{id}", produces = "application/json")
 	public ResponseEntity<ProductData> getProduct(@PathVariable String id) {
-		try {
-			return new ResponseEntity<>(storeInfoService.getProduct(id), HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity(new ProductNotFoundException().toString(), HttpStatus.NOT_FOUND);
-		}
+		return new ResponseEntity<>(storeInfoService.getProduct(id), HttpStatus.OK);
 	}
 	
 }
