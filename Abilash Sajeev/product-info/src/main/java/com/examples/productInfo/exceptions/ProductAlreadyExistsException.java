@@ -2,7 +2,7 @@ package com.examples.productInfo.exceptions;
 
 import org.springframework.http.HttpStatus;
 
-public class ProductAlreadyExistsException {
+public class ProductAlreadyExistsException extends RuntimeException {
 	
 	private String message;
 	private HttpStatus status;
