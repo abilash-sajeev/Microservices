@@ -23,7 +23,7 @@ public class ProductAlreadyExistsException extends RuntimeException {
 	
 	@Override
 	public String toString() {
-		return "Status Code: " + status + "\nError Message: " + message;
+		return status + ": " +  message;
 	}
 
 }

@@ -17,5 +17,10 @@ public class ApplicationExceptionHandler {
 	public ResponseEntity<String> handleProductNotFoundException(){
 		return new ResponseEntity(new ProductNotFoundException().toString(), HttpStatus.NOT_FOUND);
 	}
+	
+	@ExceptionHandler(AccessDeniedException.class)
+	public ResponseEntity<String> handleAccessDeniedException(){
+		return new ResponseEntity(new AccessDeniedException().toString(), HttpStatus.FORBIDDEN);
+	}
 
 }

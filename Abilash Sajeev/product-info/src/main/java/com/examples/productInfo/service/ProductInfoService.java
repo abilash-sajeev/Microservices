@@ -1,5 +1,6 @@
 package com.examples.productInfo.service;
 
+import java.nio.file.AccessDeniedException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -50,6 +51,10 @@ public class ProductInfoService {
 		if (productRepository.findById(id).isEmpty())
 			throw new ProductNotFoundException();
 		productRepository.deleteById(id);
+	}
+
+	public void admin() {
+		throw new com.examples.productInfo.exceptions.AccessDeniedException();
 	}
 
 }

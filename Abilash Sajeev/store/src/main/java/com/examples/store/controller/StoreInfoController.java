@@ -28,4 +28,9 @@ public class StoreInfoController {
 		return new ResponseEntity<>(storeInfoService.getProduct(id), HttpStatus.OK);
 	}
 	
+	@RequestMapping(value =  "/Admin", produces = "application/json")
+	public ResponseEntity<String> admin() {
+		return storeInfoService.admin();
+	}
+	
 }

@@ -47,4 +47,9 @@ public class ProductInfoController {
 		productInfoService.deleteProduct(id);
 	}
 	
+	@RequestMapping("/Admin")
+	public void admin(){
+		productInfoService.admin();
+	}
+	
 }
