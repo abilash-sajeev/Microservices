@@ -23,7 +23,7 @@ public class StoreInfoService {
 	
 	@CircuitBreaker(name = "store-api", fallbackMethod = "getFallbackProducts")
 	public List<ProductData> getProducts(){
-		Product[] productsArray = restTemplate.getForObject("http://localhost:3000/GetProductInfo", Product[].class);
+		Product[] productsArray = restTemplate.getForObject("http://product-info/GetProductInfo", Product[].class);
 		return Arrays.asList(productsArray).stream()
 				.map(product -> new ProductData(product.getId(), product.getProductName(), product.getPrice(), "Unsold"))
 				.collect(Collectors.toList());
@@ -31,12 +31,12 @@ public class StoreInfoService {
 	
 	@CircuitBreaker(name = "store-api", fallbackMethod = "getFallbackProduct")
 	public ProductData getProduct(String id) {
-		Product product = restTemplate.getForObject("http://localhost:3000/GetProductInfo/"+id, Product.class);
+		Product product = restTemplate.getForObject("http://product-info/GetProductInfo/"+id, Product.class);
 		return new ProductData(product.getId(), product.getProductName(), product.getPrice(), "Unsold");
 	}
 
 	public ResponseEntity<String> admin() {
-		ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:3000/Admin", String.class);
+		ResponseEntity<String> response = restTemplate.getForEntity("http://product-info/Admin", String.class);
 		return response;
 	}
 	
