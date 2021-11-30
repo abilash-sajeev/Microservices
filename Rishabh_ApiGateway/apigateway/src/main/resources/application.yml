@@ -1,0 +1,55 @@
+server:
+  port: 9191
+
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        #Route Mapping
+      - id: handler               #RouteIdentifier
+        uri: http://localhost:8082/         #Respective microservice URL which needs to be mapped
+         #Request Context Path Mapping
+        predicates:
+        - Path=/GetProducts/**          
+        
+        #Route Mapping
+      - id: product
+        uri: http://localhost:8081/
+        predicates:
+        - Path=/GetProductInfo
+
+        #Route Mapping
+      - id: product
+        uri: http://localhost:8081/
+        predicates:
+        - Path=/GetProductInfo/** 
+
+        #Route Mapping
+      - id: product
+        uri: http://localhost:8081/
+        predicates:
+        - Path=/PostProductInfo
+
+        #Route Mapping
+      - id: product
+        uri: http://localhost:8081/
+        predicates:
+        - Path=/UpdateProductInfo/** 
+
+      #Route Mapping
+      - id: product
+        uri: http://localhost:8081/
+        predicates:
+        - Path=/DeleteProductInfo/**
+
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http//localhost:8761/eureka/
+  instance:
+    hostname: localhost
