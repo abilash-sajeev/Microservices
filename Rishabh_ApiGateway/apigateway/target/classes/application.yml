@@ -1,0 +1,42 @@
+server:
+  port: 9000
+  
+spring:
+  application:
+    name: Gateway
+  cloud:
+    gateway:
+      routes:
+      - id: product              
+        uri: http://localhost:8081/         
+        predicates:
+        - Path=/GetProductInfo/**
+      - id: product              
+        uri: http://localhost:8081/         
+        predicates:
+        - Path=/PostProductInfo
+      - id: product              
+        uri: http://localhost:8081/         
+        predicates:
+        - Path=/UpdateProductInfo/**
+      - id: product              
+        uri: http://localhost:8081/         
+        predicates:
+        - Path=/DeleteProductInfo/**          
+        
+        #Route Mapping - With out Filters - Version 2 Request
+      - id: handler
+        uri: http://localhost:8082/
+        predicates:
+        - Path=/GetProducts/** 
+        
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
