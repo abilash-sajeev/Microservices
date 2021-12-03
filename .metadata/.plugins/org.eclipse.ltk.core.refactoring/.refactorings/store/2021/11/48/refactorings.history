@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;ProductNotFoundException.java&apos; to &apos;product-info/src/main/java/com.examples.productInfo&apos;&#x0D;&#x0A;- Original project: &apos;store&apos;&#x0D;&#x0A;- Destination element: &apos;product-info/src/main/java/com.examples.productInfo&apos;&#x0D;&#x0A;- Original element: &apos;com.examples.store.exceptions.ProductNotFoundException.java&apos;" description="Copy compilation unit" destination="=product-info/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.examples.productInfo" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.examples.store.exceptions{ProductNotFoundException.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1637665806985" units="1" version="1.0"/>
+</session>

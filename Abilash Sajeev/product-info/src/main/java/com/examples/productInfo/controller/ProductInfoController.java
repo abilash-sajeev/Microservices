@@ -52,4 +52,9 @@ public class ProductInfoController {
 		productInfoService.admin();
 	}
 	
+	@RequestMapping("/Help")
+	public String help(){
+		return productInfoService.help();
+	}
+	
 }

@@ -33,4 +33,9 @@ public class StoreInfoController {
 		return storeInfoService.admin();
 	}
 	
+	@RequestMapping(value =  "/Help", produces = "application/json")
+	public ResponseEntity<String> help() {
+		return storeInfoService.help();
+	}
+	
 }

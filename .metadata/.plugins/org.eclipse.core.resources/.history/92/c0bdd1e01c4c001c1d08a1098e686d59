@@ -1,0 +1,5 @@
+package com.examples.productInfo.service;
+
+public class ProductInfoService {
+
+}

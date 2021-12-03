@@ -1,0 +1,5 @@
+package com.examples.productInfo.Repository;
+
+public interface ProductRepository {
+
+}

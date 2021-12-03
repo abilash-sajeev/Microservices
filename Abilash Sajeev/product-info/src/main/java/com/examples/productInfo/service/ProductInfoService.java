@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 
 import com.examples.productInfo.exceptions.ProductAlreadyExistsException;
@@ -14,10 +16,14 @@ import com.examples.productInfo.models.Product;
 import com.examples.productInfo.repository.ProductRepository;
 
 @Service
+@RefreshScope
 public class ProductInfoService {
 	
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Value("${help.text}")
+	private String helpText;
 	
 	public List<Product> getProducts(){
 		List<Product> products = new ArrayList<>();
@@ -55,6 +61,10 @@ public class ProductInfoService {
 
 	public void admin() {
 		throw new com.examples.productInfo.exceptions.AccessDeniedException();
+	}
+	
+	public String help() {
+		return helpText;
 	}
 
 }

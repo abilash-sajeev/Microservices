@@ -1,0 +1,28 @@
+package com.examples.store.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.examples.store.models.Product;
+import com.examples.store.models.ProductData;
+
+@RestController
+public class StoreInfoService {
+	
+	@RequestMapping("/GetProducts")
+	public List<ProductData> getProducts(){
+		List<ProductData> products = new ArrayList<>();
+		return products;
+	}
+	
+	@RequestMapping("/GetProducts/{id}")
+	public ProductData getProduct(@PathVariable String id) {
+		return null;
+	}
+
+}

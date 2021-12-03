@@ -5,19 +5,21 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.aspectj.weaver.ast.Call;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.ctc.wstx.shaded.msv_core.util.Uri;
 import com.examples.store.models.Product;
 import com.examples.store.models.ProductData;
 
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 
 @Service
+@RefreshScope
 public class StoreInfoService {
 	
 	@Autowired
@@ -28,6 +30,9 @@ public class StoreInfoService {
 	
 	@Value("${admin.console.url}")
 	private String adminUrl;
+	
+	@Value("${help.url}")
+	private String helpUrl;
 	
 	@CircuitBreaker(name = "store-api", fallbackMethod = "getFallbackProducts")
 	public List<ProductData> getProducts(){
@@ -44,8 +49,12 @@ public class StoreInfoService {
 	}
 
 	public ResponseEntity<String> admin() {
-		System.out.println(adminUrl);
 		ResponseEntity<String> response = restTemplate.getForEntity(adminUrl, String.class);
+		return response;
+	}
+	
+	public ResponseEntity<String> help() {
+		ResponseEntity<String> response = restTemplate.getForEntity(helpUrl, String.class);
 		return response;
 	}
 	

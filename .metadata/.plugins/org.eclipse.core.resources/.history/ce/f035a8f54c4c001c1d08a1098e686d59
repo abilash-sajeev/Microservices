@@ -1,0 +1,24 @@
+package com.examples.store.models;
+
+public class ProductData extends Product {
+	
+	private String status;
+	
+	public ProductData() {
+		super();
+	}
+
+	public ProductData(String id, String productName, double price, String status) {
+		super(id, productName, price);
+		this.status = status;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+}

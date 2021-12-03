@@ -1,0 +1,5 @@
+package com.examples.productinfo.models;
+
+public class product {
+
+}

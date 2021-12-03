@@ -11,9 +11,6 @@ public class ApplicationExceptionHandler {
 
 	@ExceptionHandler(HttpClientErrorException.class)
 	public ResponseEntity<String> handleHttpClientErrorException(HttpClientErrorException ex){
-		System.out.println(ex.getStatusCode());
-		System.out.println(ex.getMessage());
-		System.out.println(new ResponseEntity<>(ex.getMessage(), ex.getStatusCode()));
 		if (ex.getStatusCode().equals(HttpStatus.NOT_FOUND)) {
 			return new ResponseEntity(new ProductNotFoundException().toString(), HttpStatus.NOT_FOUND);
 		}else if (ex.getStatusCode().equals(HttpStatus.FORBIDDEN)){

@@ -1,0 +1,48 @@
+package com.examples.productInfo.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.examples.productInfo.Repository.ProductRepository;
+import com.examples.productInfo.models.Product;
+
+@RestController
+public class ProductInfoService {
+	
+	@Autowired
+	private ProductRepository productRepository;
+	
+	@RequestMapping("/GetProductInfo")
+	public List<Product> getProducts(){
+		List<Product> products = new ArrayList<>();
+		productRepository.findAll().forEach(products::add);
+		return products;
+	}
+	
+	@RequestMapping("/GetProductInfo/{id}")
+	public Optional<Product> getProduct(@PathVariable int id) {
+		return productRepository.findById(id);
+	}
+	
+	@RequestMapping("/PostProductInfo")
+	public void addProduct(Product product) {
+		productRepository.save(product);
+	}
+	
+	@RequestMapping("/UpdateProductInfo/{id}")
+	public void updateProduct(Product product) {
+		productRepository.save(product);
+	}
+	
+	@RequestMapping("/DeleteProductInfo/{id}")
+	public void deleteProduct(@PathVariable int id) {
+		productRepository.deleteById(id);
+	}
+
+}
