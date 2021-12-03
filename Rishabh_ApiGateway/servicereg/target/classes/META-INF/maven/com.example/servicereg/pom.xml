@@ -9,38 +9,20 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>apigateway</artifactId>
+	<artifactId>servicereg</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>apigateway</name>
+	<name>servicereg</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-    <java.version>1.8</java.version>
-    <spring-cloud.version>2021.0.0-RC1</spring-cloud.version>
-  </properties>
-  <dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
+		<java.version>1.8</java.version>
+		<spring-cloud.version>2021.0.0-RC1</spring-cloud.version>
+	</properties>
+	<dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-config</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-gateway</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
