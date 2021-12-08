@@ -5,7 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.aspectj.weaver.ast.Call;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -21,6 +22,8 @@ import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 @Service
 @RefreshScope
 public class StoreInfoService {
+	
+	Logger logger = LoggerFactory.getLogger(StoreInfoService.class);
 	
 	@Autowired
 	RestTemplate restTemplate;
@@ -45,6 +48,7 @@ public class StoreInfoService {
 	@CircuitBreaker(name = "store-api", fallbackMethod = "getFallbackProduct")
 	public ProductData getProduct(String id) {
 		Product product = restTemplate.getForObject(url+id, Product.class);
+		logger.info("Product {} is available", product.getProductName());
 		return new ProductData(product.getId(), product.getProductName(), product.getPrice(), "Unsold");
 	}
 

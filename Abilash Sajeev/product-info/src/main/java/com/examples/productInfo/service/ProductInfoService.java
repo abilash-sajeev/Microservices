@@ -1,10 +1,11 @@
 package com.examples.productInfo.service;
 
-import java.nio.file.AccessDeniedException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -18,6 +19,8 @@ import com.examples.productInfo.repository.ProductRepository;
 @Service
 @RefreshScope
 public class ProductInfoService {
+	
+	Logger logger = LoggerFactory.getLogger(ProductInfoService.class);
 	
 	@Autowired
 	private ProductRepository productRepository;
@@ -33,30 +36,42 @@ public class ProductInfoService {
 	
 	public Optional<Product> getProduct(String id) {
 		Optional<Product> product = productRepository.findById(id);
-		if (product.isEmpty())
+		if (product.isEmpty()) {
+			logger.error("Product not found", new ProductNotFoundException());
 			throw new ProductNotFoundException();
+		}
+		logger.info("Product {} is available", product.get().getProductName());
 		return product;
 	}
 
 	public void addProduct(Product product) {
 		if (productRepository.findById(product.getId()).isEmpty()) {
 			productRepository.save(product);
+			logger.info("Added product {}.", product.getProductName());
 		}
 		else {
+			logger.error("Failed to add product {}", product.getProductName(), new ProductAlreadyExistsException());
 			throw new ProductAlreadyExistsException();
 		}
 	}
 	
 	public void updateProduct(Product product) {
-		if (productRepository.findById(product.getId()).isEmpty())
+		if (productRepository.findById(product.getId()).isEmpty()) {
+			logger.error("Failed to update product {}", product.getProductName(), new ProductNotFoundException());
 			throw new ProductNotFoundException();
+		}
 		productRepository.save(product);
+		logger.info("Updated product {}.", product.getProductName());
 	}
 	
 	public void deleteProduct(String id) {
-		if (productRepository.findById(id).isEmpty())
+		Optional<Product> product = productRepository.findById(id);
+		if (product.isEmpty()) {
+			logger.error("Failed to delete product.", new ProductNotFoundException());
 			throw new ProductNotFoundException();
+		}
 		productRepository.deleteById(id);
+		logger.info("Deleted product {}.", product.get().getProductName());
 	}
 
 	public void admin() {
